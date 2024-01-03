@@ -181,9 +181,9 @@
 // for (let i = 0; i < 9; i++) {
 //   console.log(friends[i]);
 // }
-for (let i = 1; i < 4; i++) {
-  console.log(`class ${i}`);
-  for (let j = 1; j < 11; j++) {
-    console.log(`student ${j}`);
-  }
-}
+// for (let i = 1; i < 4; i++) {
+//   console.log(`class ${i}`);
+//   for (let j = 1; j < 11; j++) {
+//     console.log(`student ${j}`);
+//   }
+// }
