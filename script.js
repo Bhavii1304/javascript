@@ -187,3 +187,40 @@
 //     console.log(`student ${j}`);
 //   }
 // }
+// const currentUrl = window.location.href;
+// console.log(currentUrl);
+// const host = window.location.host;
+// console.log(host);
+// const pathname = window.location.pathname;
+// console.log(pathname);
+// const search = window.location.search;
+// console.log(search);
+// const hash = window.location.hash;
+// console.log(hash);
+// Hoisting and TDZ
+// console.log(me);
+// console.log(job);
+// console.log(birthYear);
+// var me = "Bhavika";
+// let job = "Engineer";
+// const birthYear = 2001;
+
+// console.log(add(2, 3));
+// console.log(sub(5, 1));
+// console.log(mul(2, 3));
+// function add(a, b) {
+//   return a + b;
+// }
+// const sub = function (a, b) {
+//   return a - b;
+// };
+// const mul = (a, b) => a * b;
+
+// this keyword
+const bhavika = {
+  age: 22,
+  calcAge: function () {
+    console.log(this);
+  },
+};
+bhavika.calcAge();
