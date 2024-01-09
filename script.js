@@ -217,10 +217,59 @@
 // const mul = (a, b) => a * b;
 
 // this keyword
-const bhavika = {
-  age: 22,
-  calcAge: function () {
-    console.log(this);
+// const bhavika = {
+//   age: 22,
+//   calcAge: function () {
+//     console.log(this);
+//   },
+// };
+// console.log(bhavika.calcAge());
+// console.log(this);
+
+// Destructuring array and objects
+const restaurant = {
+  hotelName: "Classico Italiano",
+  hotelLocation: "italy",
+  categories: ["Italian", "Pizzeria", "vegetarian", "organic"],
+  starters: ["focaccia", "pizza", "garlic bread"],
+  mainMenu: ["Pasta", "Risotto", "sandwich"],
+  openingHours: {
+    thu: {
+      open: 12,
+      close: 22,
+    },
+    fri: {
+      open: 11,
+      close: 23,
+    },
+    sat: {
+      open: 10,
+      close: 24,
+    },
+  },
+  orderFood: function (starterFood, mainFood) {
+    return [this.starters[starterFood], this.mainMenu[mainFood]];
+  },
+  orderDelivered: function ({ starterFood, mainFood, time, address }) {
+    console.log(
+      `Order received ${this.starters[starterFood]} and ${this.mainMenu[mainFood]} will be delivered at ${address} by ${time}!`
+    );
+    return starterFood, mainFood, time, address;
   },
 };
-bhavika.calcAge();
+restaurant.orderDelivered({
+  time: 18,
+  address: "Binori Square II",
+  starterFood: 1,
+  mainFood: 0,
+});
+// const { hotelName, hotelLocation, openingHours } = restaurant;
+// console.log(hotelName, hotelLocation, openingHours);
+// const { categories = [], starterMenu: starters = [] } = restaurant;
+// console.log(categories, starters);
+// let [first, second] = restaurant.starters;
+// console.log(first, second);
+// [first, second] = [second, first];
+// console.log(first, second);
+// let [starterItem, mainItem] = restaurant.orderFood(1, 0);
+// console.log(starterItem, mainItem);
