@@ -256,13 +256,27 @@ const restaurant = {
     );
     return starterFood, mainFood, time, address;
   },
+  madePasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your pasta with ${ing1}, ${ing2} and ${ing3}`);
+  },
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
 };
-restaurant.orderDelivered({
-  time: 18,
-  address: "Binori Square II",
-  starterFood: 1,
-  mainFood: 0,
-});
+restaurant.orderPizza("paneer", "olives", "corn", "onion");
+// restaurant.orderDelivered({
+//   time: 18,
+//   address: "Binori Square II",
+//   starterFood: 1,
+//   mainFood: 0,
+// });
+// const ingredients = [
+//   prompt("let's make pasta! Ingredient1?"),
+//   prompt("ingredient2?"),
+//   prompt("ingredient3"),
+// ];
+// restaurant.madePasta(...ingredients);
 // const { hotelName, hotelLocation, openingHours } = restaurant;
 // console.log(hotelName, hotelLocation, openingHours);
 // const { categories = [], starterMenu: starters = [] } = restaurant;
@@ -273,3 +287,10 @@ restaurant.orderDelivered({
 // console.log(first, second);
 // let [starterItem, mainItem] = restaurant.orderFood(1, 0);
 // console.log(starterItem, mainItem);
+
+// spread operator (...)
+// const arr = [1, 2, 3];
+// const newArr = [...arr, 4, 5, 6];
+// console.log(newArr);
+// const moreStarters = [...restaurant.starters, "nachos"];
+// console.log(moreStarters);
