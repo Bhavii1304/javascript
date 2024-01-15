@@ -442,31 +442,119 @@
 //   console.log(`[${half} HALF] ${min}: ${event}`);
 // }
 
-// ----Strings---
-const airline = "SpiceJet";
-const plane = "A123";
-// 1. this is to treat strings as array another method is chartAt(index)
-console.log(plane[2]);
-console.log(plane.charAt(0));
-// 2. indexOf() to know the index of characters
-console.log(airline.indexOf("J"));
-// 3. slice(start,end) this takes indexes and slice the string from start to end but end will not included in result
-console.log(airline.slice(2, 5));
-// 4. toLowerCase(), toUpperCase(), trim()
-const email = "  Hello@Gmail.Com";
-const newEmail = email.toLowerCase().trim();
-console.log(newEmail);
-// 5. replace() to replace a string with another string
-const str = "Hell#";
-const newStr = str.replace("#", "o");
-console.log(newStr);
-// 6. includes() returns a boolean value if a strings contains a particular value also startsWith() & endsWith()
-const info = "I am a developer";
-console.log(info.includes("developer"));
-const data = "Welcome to Airbnb";
-if (data.startsWith("Welcome") && data.endsWith("Airbnb")) {
-  console.log("Thank You!!");
-}
-// 7. split() converts the string to an array of strings
-const hello = "hello world";
-console.log(hello.split(" "));
+// ----Strings---  are immutable and every method returns a new string
+// const airline = "SpiceJet";
+// const plane = "A123";
+// // 1. this is to treat strings as array another method is chartAt(index)
+// console.log(plane[2]);
+// console.log(plane.charAt(0));
+// // 2. indexOf() to know the index of characters
+// console.log(airline.indexOf("J"));
+// // 3. slice(start,end) this takes indexes and slice the string from start to end but end will not included in result
+// console.log(airline.slice(2, 5));
+// // 4. toLowerCase(), toUpperCase(), trim() this removes whitespaces from both side of the string
+// const email = "  Hello@Gmail.Com";
+// const newEmail = email.toLowerCase().trim();
+// console.log(newEmail);
+// // 5. replace() to replace a string with another string
+// const str = "Hell#";
+// const newStr = str.replace("#", "o");
+// console.log(newStr);
+// // 6. includes() returns a boolean value if a strings contains a particular value also startsWith() & endsWith()
+// const info = "I am a developer";
+// console.log(info.includes("developer"));
+// const data = "Welcome to Airbnb";
+// if (data.startsWith("Welcome") && data.endsWith("Airbnb")) {
+//   console.log("Thank You!!");
+// }
+// // 7. split() converts the string to an array of strings and we have to mention from where we want to split string
+// const hello = "hello world";
+// console.log(hello.split(" "));
+// console.log(hello.split("l"));
+// // 8. padStart()/padEnd pads a string from start/end; 1st parameter is length and 2nd is what you want to pad
+// const num = "9";
+// console.log(num.padStart(3, 0));
+// console.log(num.padEnd(6, 1));
+// const maskNumber = function (number) {
+//   const str = number + "";
+//   const lastFour = str.slice(-4);
+//   const maskedNum = lastFour.padStart(str.length, "*");
+//   return maskedNum;
+// };
+// console.log(maskNumber(84375304893));
+// console.log(maskNumber(7832384234990423));
+// // 9. repeat() this repeats the strings
+// const strRepeat = "Hi Bhavika";
+// console.log(strRepeat.repeat(9));
+
+// ----Challenge4---
+// document.body.append(document.createElement("textarea"));
+// document.body.append(document.createElement("button"));
+// document.querySelector("button").addEventListener("click", function () {
+//   const names = document.querySelector("textarea").value;
+//   const nameNewLine = names.split("\n");
+//   for (const camelCase of nameNewLine) {
+//     const [fisrtN, secondN] = camelCase.toLowerCase().trim().split("_");
+//     const finalN = `${fisrtN}${secondN.replace(
+//       secondN[0],
+//       secondN[0].toUpperCase()
+//     )}`;
+//     console.log(finalN);
+//   }
+// });
+
+// strings methods usecase
+// const flights =
+//   "_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30";
+
+// const getCode = (str) => str.slice(0, 3).toUpperCase();
+
+// for (const flight of flights.split("+")) {
+//   const [type, from, to, time] = flight.split(";");
+//   const output = `${type.startsWith("_Delayed") ? "🔴" : ""}${type.replaceAll(
+//     "_",
+//     " "
+//   )} ${getCode(from)} ${getCode(to)} (${time.replace(":", "h")})`.padStart(36);
+//   console.log(output);
+// }
+
+// default parameters
+// const bookings = [];
+// const createBooking = function (fightNum, numPassengers = 1, price = 1500) {
+//   const booking = {
+//     fightNum,
+//     numPassengers,
+//     price,
+//   };
+//   console.log(booking);
+//   bookings.push(booking);
+// };
+// createBooking("LH1234");
+// createBooking("LH1234", 2, 3000);
+
+// const flight = "BH1234";
+// const bhavi = {
+//   name: "Bhavika Thawani",
+//   pssprtNum: 53673592374,
+// };
+// const checkIn = function (flightNum, passenger) {
+//   flightNum = "LH1234";
+//   passenger.name = "Ms." + passenger.name;
+// };
+// checkIn(flight, bhavi);
+// console.log(flight);
+// console.log(bhavi);
+
+const oneWord = function (str) {
+  return str.replace(/ /g, "").toLowerCase();
+};
+const upperWord = function (str) {
+  const [fisrtWord, ...otherWords] = str.split(" ");
+  return [fisrtWord.toUpperCase(), ...otherWords].join(" ");
+};
+// this is higher order function which takes two functions as parameters
+const transformerFn = function (str, fn) {
+  console.log(`Original string: ${str}`);
+  console.log(`Transformed string: ${fn(str)}`);
+};
+transformerFn("javascript is the best", upperWord);
