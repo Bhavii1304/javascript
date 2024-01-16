@@ -1,0 +1,13 @@
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to top left, #28b487, #7dd56f);
+}
+.poll {
+  font-size: 1.6rem;
+  padding: 1rem 2rem;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+}

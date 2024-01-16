@@ -545,16 +545,95 @@
 // console.log(flight);
 // console.log(bhavi);
 
-const oneWord = function (str) {
-  return str.replace(/ /g, "").toLowerCase();
+// const oneWord = function (str) {
+//   return str.replace(/ /g, "").toLowerCase();
+// };
+// const upperWord = function (str) {
+//   const [fisrtWord, ...otherWords] = str.split(" ");
+//   return [fisrtWord.toUpperCase(), ...otherWords].join(" ");
+// };
+// // this is higher order function which takes two functions as parameters
+// const transformerFn = function (str, fn) {
+//   console.log(`Original string: ${str}`);
+//   console.log(`Transformed string: ${fn(str)}`);
+// };
+// transformerFn("javascript is the best", upperWord);
+
+// const lufthansa = {
+//   airline: "Lufthansa",
+//   iatacode: "LH",
+//   bookings: [],
+//   book(flightNum, name) {
+//     console.log(
+//       `${name} booked a seat on ${this.airline} flight ${this.iatacode}${flightNum}`
+//     );
+//   },
+// };
+// const eurowings = {
+//   airline: "Eurowings",
+//   iatacode: "EW",
+//   bookings: [],
+// };
+// const swiss = {
+//   airline: "Swiss",
+//   iatacode: "SW",
+//   bookings: [],
+// };
+// lufthansa.book(239, "Bhavika");
+// const bookFlight = lufthansa.book;
+
+// // call() method to use same method on different objects and takes arguments separately
+// bookFlight.call(lufthansa, 123, "Bhavika");
+// bookFlight.call(eurowings, 789, "Bhavesh");
+// bookFlight.call(swiss, 675, "John");
+
+// // apply() this is same as call method only difference is it takes arguments in array
+// bookFlight.apply(eurowings, [839, "marry"]);
+// bookFlight.apply(swiss, [564, "paul"]);
+
+// // bind() this binds a method in object
+// const flightBook = bookFlight.bind(eurowings);
+// flightBook(587, "bhavika");
+
+// ----Poll game---
+// const poll = {
+//   question: "What is your favourite programming language?",
+//   options: ["0:Javascript", "1:Python", "2: Rust", "3:C++"],
+//   answers: new Array(4).fill(0),
+//   registerNewAnswer() {
+//     const answer = Number(
+//       prompt(
+//         `${this.question}\n${this.options.join("\n")}\n(Write option number)`
+//       )
+//     );
+//     console.log(answer);
+//     typeof answer === "number" &&
+//       answer < this.answers.length &&
+//       this.answers[answer]++;
+//     // console.log(this.answers);
+//     this.displayResults();
+//     this.displayResults("string");
+//   },
+//   displayResults(type = "array") {
+//     if (type === "array") {
+//       console.log(this.answers);
+//     } else if (type === "string") {
+//       console.log(`Poll results are ${this.answers.join(", ")}`);
+//     }
+//   },
+// };
+// document
+//   .querySelector(".poll")
+//   .addEventListener("click", poll.registerNewAnswer.bind(poll));
+// poll.displayResults.call({ answers: [5, 2, 3] }, "string");
+// poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, "string");
+
+// CLOSURES
+const secureBooking = function () {
+  let passengerCount = 0;
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
 };
-const upperWord = function (str) {
-  const [fisrtWord, ...otherWords] = str.split(" ");
-  return [fisrtWord.toUpperCase(), ...otherWords].join(" ");
-};
-// this is higher order function which takes two functions as parameters
-const transformerFn = function (str, fn) {
-  console.log(`Original string: ${str}`);
-  console.log(`Transformed string: ${fn(str)}`);
-};
-transformerFn("javascript is the best", upperWord);
+const booker = secureBooking();
