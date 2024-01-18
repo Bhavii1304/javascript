@@ -629,11 +629,96 @@
 // poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, "string");
 
 // CLOSURES
-const secureBooking = function () {
-  let passengerCount = 0;
-  return function () {
-    passengerCount++;
-    console.log(`${passengerCount} passengers`);
-  };
+// const secureBooking = function () {
+//   let passengerCount = 0;
+//   return function () {
+//     passengerCount++;
+//     console.log(`${passengerCount} passengers`);
+//   };
+// };
+// const booker = secureBooking();
+
+// ---- Array Methods---
+// let arr = ["a", "b", "c", "d", "e", "f", "g", "h"];
+// let arr1 = ["i", "j", "k", "l", "m", "n", "o", "p"];
+
+// 1. SLice method(takes two arguments) is to take a part of array i.e. slices out a piece of array into new array
+// console.log(arr.slice(3)); // this slice the array from  position 3 upto end
+// console.log(arr.slice(1, 4));
+
+// 2. Splice() to add/remove elements specified position and this mutate the original array(takes 2/3 arguments)
+// console.log(arr.splice(2));
+// const arr1 = arr.splice(3, 2);
+// console.log(arr1);
+// console.log(arr);
+// 3. reverse() this method reverse the original array
+// console.log(arr.reverse());
+// 4. concat() merge two arrays and returns a new array
+// console.log(arr.concat(arr1).join(","));
+// at() to get element of specified index of array
+// console.log(arr.at(2));
+
+// ---- foreach----
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// movements.forEach(function (mov, i, array) {
+//   if (mov > 0) {
+//     console.log(`Movement ${i + 1}: You deposit ${mov}`);
+//   } else {
+//     console.log(`Movement ${i + 1}: You withdraw ${Math.abs(mov)}`);
+//   }
+// });
+// // ---forEach with map---
+// const currencies = new Map([
+//   ["USD", "United States dollar"],
+//   ["EUR", "Euro"],
+//   ["GBP", "Pound sterling"],
+// ]);
+// currencies.forEach(function (value, key, map) {
+//   console.log(`${key}: ${value}`);
+// });
+
+//----challenge 4------
+// const checkDogs = function (dogsJulia, dogsKate) {
+//   const dogsJuliaCorrected = dogsJulia.slice();
+//   dogsJuliaCorrected.splice(0, 1);
+//   dogsJuliaCorrected.splice(-2);
+//   const dogs = dogsJuliaCorrected.concat(dogsKate);
+//   console.log(dogs);
+//   dogs.forEach(function (dog, i) {
+//     if (dog >= 3) {
+//       console.log(`Dog number ${i + 1} is an adult, and is ${dog} years old`);
+//     } else {
+//       console.log(`Dog number ${i + 1} is still a puppy 🐶`);
+//     }
+//   });
+// };
+// checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+// checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+
+// ---map() method is same as forEach method takes a callback fn but in this it creates a new array i.e. it doesn't mutate the original one
+// const movementsUSD = movements.map((movement) => movement * 1.1);
+// console.log(movementsUSD);
+
+// filter() method(takes a callback fn) filtered out the original array with those values that pass the test case and creates a new array
+// const deposit = movements.filter((mov) => mov > 0);
+// console.log(deposit);
+
+// reduce() method
+// const balance = movements.reduce(function (acc, cur) {
+//   return acc + cur;
+// }, 0);
+// console.log(balance);
+// Data 1: [5, 2, 4, 1, 15, 8, 3]
+// § Data 2: [16, 6, 10, 5, 6, 1, 4]
+// ----challenge 5-----
+const calcAverageHumanAge = function (ages) {
+  const humanAges = ages.map((age) => (age <= 2 ? 2 * age : 16 + age * 4));
+  const adults = humanAges.filter((age) => age >= 18);
+  console.log(humanAges);
+  console.log(adults);
+  const average = adults.reduce((acc, age) => acc + age, 0) / adults.length;
+  return average;
 };
-const booker = secureBooking();
+const avg1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+const avg2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+console.log(avg1, avg2);
