@@ -711,14 +711,25 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // Data 1: [5, 2, 4, 1, 15, 8, 3]
 // § Data 2: [16, 6, 10, 5, 6, 1, 4]
 // ----challenge 5-----
-const calcAverageHumanAge = function (ages) {
-  const humanAges = ages.map((age) => (age <= 2 ? 2 * age : 16 + age * 4));
-  const adults = humanAges.filter((age) => age >= 18);
-  console.log(humanAges);
-  console.log(adults);
-  const average = adults.reduce((acc, age) => acc + age, 0) / adults.length;
-  return average;
-};
-const avg1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
-const avg2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
-console.log(avg1, avg2);
+// const calcAverageHumanAge = function (ages) {
+//   const humanAges = ages.map((age) => (age <= 2 ? 2 * age : 16 + age * 4));
+//   const adults = humanAges.filter((age) => age >= 18);
+//   console.log(humanAges);
+//   console.log(adults);
+//   const average = adults.reduce((acc, age) => acc + age, 0) / adults.length;
+//   return average;
+// };
+// const avg1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+// const avg2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+// console.log(avg1, avg2);
+// const obj1 = {
+//   name: "bhavika",
+//   name: "thawani",
+// };
+// console.log(obj1);
+
+// find() method returns the value of the first array element that passes the condition
+const firstWithdrawal = movements.find((mov) => mov < 0);
+console.log(movements);
+// console.log(firstWithdrawal);
+console.log(movements.findLast((mov) => mov < 0));
