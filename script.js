@@ -659,7 +659,7 @@
 // console.log(arr.at(2));
 
 // ---- foreach----
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // movements.forEach(function (mov, i, array) {
 //   if (mov > 0) {
 //     console.log(`Movement ${i + 1}: You deposit ${mov}`);
@@ -729,7 +729,202 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // console.log(obj1);
 
 // find() method returns the value of the first array element that passes the condition
-const firstWithdrawal = movements.find((mov) => mov < 0);
-console.log(movements);
+// const firstWithdrawal = movements.find((mov) => mov < 0);
+// console.log(movements);
 // console.log(firstWithdrawal);
-console.log(movements.findLast((mov) => mov < 0));
+// console.log(movements.findLast((mov) => mov < 0));
+
+// some and every method
+// const anyDeposits = movements.some((mov) => mov > 5000);
+// console.log(anyDeposits);
+// EVERY =>  if every element passes the test of callback fn then only it returns true
+
+// console.log(movements.every((mov) => mov > 0));
+
+// const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+// flat() method to flatten an array
+// console.log(arr.flat());
+// flatMap() maps all the elements of array and then  creates a new array by flatten the array
+
+// ------sorting arrays-------
+// const owners = ["Jonas", "Zach", "Adam", "Martha"];
+// console.log(owners.sort());
+// console.log(movements.sort());
+
+// movements.sort((a, b) => {
+//   if (a > b) return 1;
+//   if (a < b) return -1;
+// });
+// console.log(movements);
+
+// -------------Array methods practice---------------
+// const account1 = {
+//   owner: "Jonas Schmedtmann",
+//   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
+//   interestRate: 1.2, // %
+//   pin: 1111,
+// };
+
+// const account2 = {
+//   owner: "Jessica Davis",
+//   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+//   interestRate: 1.5,
+//   pin: 2222,
+// };
+
+// const account3 = {
+//   owner: "Steven Thomas Williams",
+//   movements: [200, -200, 340, -300, -20, 50, 400, -460],
+//   interestRate: 0.7,
+//   pin: 3333,
+// };
+
+// const account4 = {
+//   owner: "Sarah Smith",
+//   movements: [430, 1000, 700, 50, 90],
+//   interestRate: 1,
+//   pin: 4444,
+// };
+
+// const accounts = [account1, account2, account3, account4];
+
+// const bankDeposit = accounts
+//   .flatMap((acc) => acc.movements)
+//   .filter((mov) => mov > 0)
+//   .reduce((sum, cur) => sum + cur, 0);
+// console.log(bankDeposit);
+
+// const numDeposits = accounts
+//   .flatMap((acc) => acc.movements)
+//   .reduce((count, cur) => (cur >= 1000 ? ++count : count), 0);
+// console.log(numDeposits);
+
+// const sums = accounts
+//   .flatMap((acc) => acc.movements)
+//   .reduce(
+//     (sums, cur) => {
+//       cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
+//       return sums;
+//     },
+//     { deposits: 0, withdrawals: 0 }
+//   );
+// console.log(sums);
+
+// const conevrtTitleCase = function (title) {
+//   const exceptions = ["a", "an", "the", "but", "or", "on", "in", "with"];
+//   const titleCase = title
+//     .toLowerCase()
+//     .split(" ")
+//     .map((word) =>
+//       exceptions.includes(word) ? word : word[0].toUpperCase() + word.slice(1)
+//     )
+//     .join(" ");
+//   return titleCase;
+// };
+// console.log(conevrtTitleCase("this is nice title"));
+// console.log(conevrtTitleCase("this is long but with a small cap"));
+
+// -----challenge 4-------
+// const dogs = [
+//   { weight: 22, curFood: 250, owners: ["Alice", "Bob"] },
+//   { weight: 8, curFood: 200, owners: ["Matilda"] },
+//   { weight: 13, curFood: 275, owners: ["Sarah", "John"] },
+//   { weight: 32, curFood: 340, owners: ["Michael"] },
+// ];
+
+// // 1.
+// dogs.forEach((dog) => (dog.recFood = Math.trunc(dog.weight ** 0.75 * 28)));
+
+// // 2.
+// const dogSarah = dogs.find((dog) => dog.owners.includes("Sarah"));
+// console.log(dogSarah);
+// console.log(
+//   `Sarah's dog is eating too ${
+//     dogSarah.curFood > dogSarah.recFood ? "much" : "little"
+//   } `
+// );
+
+// // 3.
+// const ownersEatTooMuch = dogs
+//   .filter((dog) => dog.curFood > dog.recFood)
+//   .flatMap((dog) => dog.owners);
+// // .flat();
+// console.log(ownersEatTooMuch);
+
+// const ownersEatTooLittle = dogs
+//   .filter((dog) => dog.curFood < dog.recFood)
+//   .flatMap((dog) => dog.owners);
+// console.log(ownersEatTooLittle);
+
+// // 4.
+// console.log(`${ownersEatTooMuch.join(" and ")}'s dogs eat too much!`);
+// console.log(`${ownersEatTooLittle.join(" and ")}'s dogs eat too little!`);
+
+// // 5.
+// console.log(dogs.some((dog) => dog.curFood === dog.recFood));
+
+// // 6.
+// const checkEatingOkay = (dog) =>
+//   dog.curFood > dog.recFood * 0.9 && dog.curFood < dog.recFood * 1.1;
+
+// console.log(dogs.some(checkEatingOkay));
+
+// // 7.
+// console.log(dogs.filter(checkEatingOkay));
+
+// // 8.
+// const dogsSorted = dogs.slice().sort((a, b) => a.recFood - b.recFood);
+// console.log(dogsSorted);
+
+// --------------Numbers,dates and timers--------------
+
+// conversion
+// console.log(Number("2379"));
+// const abc = +"23";
+// console.log(typeof abc);
+// console.log(typeof NaN);
+
+// parsing
+// console.log(Number.parseInt("30px", 10));
+// console.log(Number.parseInt("e34", 10));
+// console.log(Number.isNaN(20));
+
+// checking if value is a number
+// console.log(Number.isFinite(30));
+// console.log(Number.isFinite("30"));
+
+// ----math and rounding----
+
+// math funcs do type coercion but not parsing
+// console.log(Math.sqrt(81));
+// console.log(Math.max(485, 2383, 84, 8, 3947, 93283, 9990)); // min and max fn to find minimum and maximum value
+// const randomNum = (min, max) =>
+//   Math.trunc(Math.random() * (max - min) + 1) + min;
+// console.log(randomNum(20, 50));
+
+// // -----rounding integers------
+
+// // 1. Math.trunc() returns the integer part of number
+// console.log(Math.trunc(57.324));
+// console.log(Math.trunc(83.829382));
+// // 2. Math.round() returns rounded value to its nearest value
+// console.log(Math.round(583.4848));
+// console.log(Math.round(658.8997));
+// // 3. Math.floor() returns rounded down value to its nearest value
+// console.log(Math.floor(45.33));
+// // 4. Mat.ceil() returns rounded up value to its nearest value
+// console.log(Math.ceil(78.68));
+
+// --- tofixed() converts a number to string, rounded to a specified no. of decimal
+// console.log((43.4853).toFixed(3));
+
+// -----remainder operator----
+// console.log(8 % 5);
+
+// ----numeric separators----
+// Numeric Separators in javascript, enables underscore as a separator in numeric literals to improve readability.
+// const hello = 5479_7348_892;
+// console.log(hello);
+
+// ----------BigInt------
+// this variable is used to store big integer values
