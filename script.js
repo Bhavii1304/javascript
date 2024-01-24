@@ -1,3 +1,5 @@
+#!/usr/bin/env /usr/local/bin/node
+
 // strings and template literals
 // let job = "engineer";
 // let firstName = "bhavika";
@@ -933,5 +935,23 @@
 // -----Dates----
 // new Date() constructor is  used to create date objects
 
-const date = new Date();
-console.log(date);
+// const date = new Date();
+// console.log(date);
+// console.log(new Date(3 * 24 * 60 * 60 * 1000));
+// console.log(date.getFullYear());
+// console.log(date.getMonth());
+// console.log(date.getDate());
+// console.log(date.getDay());
+// console.log(date.getHours());
+// console.log(date.getMinutes());
+// console.log(date.getSeconds());
+// console.log(Date.now());
+// date.setFullYear(2025);
+// date.setMonth(3);
+// date.setDate(13);
+// console.log(date);
+
+const calcDaysPassed = (date1, date2) =>
+  Math.abs(date2 - date1) / (1000 * 60 * 60 * 24);
+const remainDays = calcDaysPassed(new Date(2024, 1, 24), new Date(2024, 1, 27));
+console.log(remainDays);
