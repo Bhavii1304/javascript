@@ -928,3 +928,10 @@
 
 // ----------BigInt------
 // this variable is used to store big integer values
+// console.log(BigInt(4832948435372854482084324278262873199));
+
+// -----Dates----
+// new Date() constructor is  used to create date objects
+
+const date = new Date();
+console.log(date);
