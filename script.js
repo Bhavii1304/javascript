@@ -951,7 +951,24 @@
 // date.setDate(13);
 // console.log(date);
 
-const calcDaysPassed = (date1, date2) =>
-  Math.abs(date2 - date1) / (1000 * 60 * 60 * 24);
-const remainDays = calcDaysPassed(new Date(2024, 1, 24), new Date(2024, 1, 27));
-console.log(remainDays);
+// const calcDaysPassed = (date1, date2) =>
+//   Math.abs(date2 - date1) / (1000 * 60 * 60 * 24);
+// const remainDays = calcDaysPassed(new Date(2024, 1, 24), new Date(2024, 1, 27));
+// console.log(remainDays);
+
+// ----- setTimeout() and setInterval()-------
+
+// setTimeout() takes two arguments 1st is callback function which we want to execute and 2nd is specified time in millisecs (i.e. after what time we want to execute that function)
+// const ingredients = ["mushrooms", "olives"];
+// const pizzaTimer = setTimeout(
+//   (ing1, ing2) => console.log(`Here is your pizza with ${ing1} and ${ing2} 🍕`),
+//   3000,
+//   ...ingredients
+// );
+// if (ingredients.includes("pasta")) clearTimeout(pizzaTimer);
+
+// setInterval() takes two arguments 1st callback function and 2nd specified time in which function executes after that time
+// setInterval(function () {
+//   const now = new Date();
+//   console.log(now);
+// }, 1000);
