@@ -29,6 +29,11 @@ const renderCountry = function (data) {
   countriesContainer.style.opacity = 1;
 };
 
+const renderError = function (msg) {
+  countriesContainer.insertAdjacentText("beforeend", msg);
+  countriesContainer.style.opacity = 1;
+};
+
 // const getCountryAndNeighbour = function (country) {
 //   const request = new XMLHttpRequest();
 //   request.open("GET", `https://restcountries.com/v3.1/name/${country}`);
@@ -66,17 +71,58 @@ const renderCountry = function (data) {
 // const request = fetch("https://restcountries.com/v3.1/name/bharat");
 // console.log(request);
 
-const getCountryData = function (country) {
-  fetch(`https://restcountries.com/v3.1/name/${country}`)
-    .then((response) => response.json())
-    .then((data) => {
-      renderCountry(data[0]);
-      const neighbour = data[0]?.borders?.[0];
-      if (!neighbour) return;
+// const getJson = function (url, errorMessage = "something went wrong") {
+//   return fetch(url).then((response) => {
+//     if (!response.ok) throw new Error(`${errorMessage} (${response.status})`);
+//   });
+// };
 
-      return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
+// const getCountryData = function (country) {
+//   getJson(`https://restcountries.com/v3.1/name/${country}`, "country not found")
+//     .then((data) => {
+//       renderCountry(data[0]);
+//       const neighbour = data[0]?.borders?.[0];
+//       if (!neighbour) throw new Error("No neighbour found");
+
+//       return getJson(
+//         `https://restcountries.com/v3.1/alpha/${neighbour}`,
+//         "country not found"
+//       );
+//     })
+//     .then((neighbourData) => renderCountry(neighbourData))
+//     .catch((err) => {
+//       console.log(`${err} 👀`);
+//       renderError(`Something  went wrong ${err.message}. Try again!`);
+//     })
+//     .finally(() => {
+//       countriesContainer.style.opacity = 1;
+//     });
+// };
+// btn.addEventListener("click", function () {
+//   getCountryData("bharat");
+// });
+
+// -------------Coding challenge 1-------------
+const whereAmI = function (lat, lng) {
+  fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
+    .then((res) => {
+      if (!res.ok) throw new Error(`Problem with geocoding ${res.status}`);
+      return res.json();
     })
-    .then((response) => response.json())
-    .then((neighbourData) => renderCountry(neighbourData));
+    .then((data) => {
+      console.log(data);
+      console.log(`You are in ${data.city}, ${data.country}`);
+
+      return fetch(`https://restcountries.com/v3.1/name/${data.country}`);
+    })
+    .then((res) => {
+      if (!res.ok) throw new Error(`Country not found (${res.status})`);
+
+      return res.json();
+    })
+    .then((data) => renderCountry(data[0]))
+    .catch((err) => console.error(`${err.message} 💥`));
 };
-getCountryData("bharat");
+whereAmI(23.066221, 72.636199);
+// whereAmI(19.037, 72.873);
+// whereAmI(23.31609, 72.4312);
