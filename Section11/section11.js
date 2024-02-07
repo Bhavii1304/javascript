@@ -103,26 +103,46 @@ const renderError = function (msg) {
 // });
 
 // -------------Coding challenge 1-------------
-const whereAmI = function (lat, lng) {
-  fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
-    .then((res) => {
-      if (!res.ok) throw new Error(`Problem with geocoding ${res.status}`);
-      return res.json();
-    })
-    .then((data) => {
-      console.log(data);
-      console.log(`You are in ${data.city}, ${data.country}`);
+// const whereAmI = function (lat, lng) {
+//   fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
+//     .then((res) => {
+//       if (!res.ok) throw new Error(`Problem with geocoding ${res.status}`);
+//       return res.json();
+//     })
+//     .then((data) => {
+//       console.log(data);
+//       console.log(`You are in ${data.city}, ${data.country}`);
 
-      return fetch(`https://restcountries.com/v3.1/name/${data.country}`);
-    })
-    .then((res) => {
-      if (!res.ok) throw new Error(`Country not found (${res.status})`);
+//       return fetch(`https://restcountries.com/v3.1/name/${data.country}`);
+//     })
+//     .then((res) => {
+//       if (!res.ok) throw new Error(`Country not found (${res.status})`);
 
-      return res.json();
-    })
-    .then((data) => renderCountry(data[0]))
-    .catch((err) => console.error(`${err.message} 💥`));
-};
-whereAmI(23.066221, 72.636199);
+//       return res.json();
+//     })
+//     .then((data) => renderCountry(data[0]))
+//     .catch((err) => console.error(`${err.message} 💥`));
+// };
+// whereAmI(23.066221, 72.636199);
 // whereAmI(19.037, 72.873);
 // whereAmI(23.31609, 72.4312);
+
+// ---------------- Event loop practice------------
+// console.log("test start"); // ---- this will print 1st
+// setTimeout(() => console.log("timer in cb"), 0); // this 5th
+// Promise.resolve("resolved promise").then((res) => console.log(res)); // this 3rd
+// Promise.resolve("resolved again").then((res) => {
+//   for (let i = 0; i < 10000; i++) {}
+//   console.log(res);
+// }); // this 4th
+// console.log("test end"); // this 2nd
+
+// ------------Creating promises using Promise constructor------------
+
+const lottery = new Promise(function (resolve, reject) {
+  if (Math.random() >= 0.5) {
+    resolve("you gain money");
+  } else {
+    reject("you lose");
+  }
+});
