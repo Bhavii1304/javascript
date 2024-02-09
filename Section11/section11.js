@@ -139,10 +139,133 @@ const renderError = function (msg) {
 
 // ------------Creating promises using Promise constructor------------
 
-const lottery = new Promise(function (resolve, reject) {
-  if (Math.random() >= 0.5) {
-    resolve("you gain money");
-  } else {
-    reject("you lose");
-  }
-});
+// const lottery = new Promise(function (resolve, reject) {
+//   if (Math.random() >= 0.5) {
+//     resolve("you gain money");
+//   } else {
+//     reject("you lose money");
+//   }
+// });
+// lottery.then((res) => console.log(res)).catch((err) => console.log(err));
+
+// const wait = function (seconds) {
+//   return new Promise((resolve) => {
+//     setTimeout(resolve, seconds * 1000);
+//   });
+// };
+
+// wait(2)
+//   .then(() => {
+//     console.log("I waited for 2 seconds");
+//     return wait(1);
+//   })
+//   .then(() => console.log("i waited for 1 sec"));
+
+// const promise2 = new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     let error = true;
+//     if (!error) {
+//       resolve({ username: "bhavika", passwrd: "abc123" });
+//     } else {
+//       reject("some error occured");
+//     }
+//   }, 1000);
+// });
+
+// promise2
+//   .then((user) => {
+//     console.log(user);
+//     return user.username;
+//   })
+//   .then((username) => console.log(username))
+//   .catch((err) => console.log(err))
+//   .finally(() => console.log("finally resolved"));
+
+// -------- promisifying geolocation api--------
+
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    // navigator.geolocation.getCurrentPosition(
+    //   position => resolve(position),
+    //   err => reject(err)
+    // );
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+// getPosition().then(pos => console.log(pos));
+
+const whereAmI = function () {
+  getPosition()
+    .then((pos) => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+
+      return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    })
+    .then((res) => {
+      if (!res.ok) throw new Error(`Problem with geocoding ${res.status}`);
+      return res.json();
+    })
+    .then((data) => {
+      console.log(data);
+      console.log(`You are in ${data.city}, ${data.country}`);
+
+      return fetch(`https://restcountries.eu/rest/v2/name/${data.country}`);
+    })
+    .then((res) => {
+      if (!res.ok) throw new Error(`Country not found (${res.status})`);
+
+      return res.json();
+    })
+    .then((data) => renderCountry(data[0]))
+    .catch((err) => console.error(`${err.message} 💥`));
+};
+
+btn.addEventListener("click", whereAmI);
+
+// ---------------challenge 2-------------
+
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+
+const imgContainer = document.querySelector(".images");
+
+const createImage = function (imgPath) {
+  return new Promise(function (resolve, reject) {
+    const img = document.createElement("img");
+    img.src = imgPath;
+
+    img.addEventListener("load", function () {
+      imgContainer.append(img);
+      resolve(img);
+    });
+
+    img.addEventListener("error", function () {
+      reject(new Error("Image not found"));
+    });
+  });
+};
+
+let currentImg;
+
+createImage("/Section11/img-1.jpg")
+  .then((img) => {
+    currentImg = img;
+    console.log("Image 1 loaded");
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = "none";
+    return createImage("/Section11/img-2.jpg");
+  })
+  .then((img) => {
+    currentImg = img;
+    console.log("Image 2 loaded");
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = "none";
+  })
+  .catch((err) => console.error(err));
