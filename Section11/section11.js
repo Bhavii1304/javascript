@@ -34,6 +34,19 @@ const renderError = function (msg) {
   countriesContainer.style.opacity = 1;
 };
 
+// const getJson = function (url, errorMessage = "something went wrong") {
+//   return fetch(url).then((response) => {
+//     if (!response.ok) throw new Error(`${errorMessage} (${response.status})`);
+//   });
+// };
+
+const getJson = function (url, errorMessage = "something went wrong") {
+  return fetch(url).then((response) => {
+    if (!response.ok) throw new Error(`${errorMessage} (${response.status})`);
+    return response.json(); // Parse JSON data
+  });
+};
+
 // const getCountryAndNeighbour = function (country) {
 //   const request = new XMLHttpRequest();
 //   request.open("GET", `https://restcountries.com/v3.1/name/${country}`);
@@ -70,12 +83,6 @@ const renderError = function (msg) {
 
 // const request = fetch("https://restcountries.com/v3.1/name/bharat");
 // console.log(request);
-
-// const getJson = function (url, errorMessage = "something went wrong") {
-//   return fetch(url).then((response) => {
-//     if (!response.ok) throw new Error(`${errorMessage} (${response.status})`);
-//   });
-// };
 
 // const getCountryData = function (country) {
 //   getJson(`https://restcountries.com/v3.1/name/${country}`, "country not found")
@@ -183,89 +190,106 @@ const renderError = function (msg) {
 
 // -------- promisifying geolocation api--------
 
-const getPosition = function () {
-  return new Promise(function (resolve, reject) {
-    // navigator.geolocation.getCurrentPosition(
-    //   position => resolve(position),
-    //   err => reject(err)
-    // );
-    navigator.geolocation.getCurrentPosition(resolve, reject);
-  });
-};
+// const getPosition = function () {
+//   return new Promise(function (resolve, reject) {
+//     // navigator.geolocation.getCurrentPosition(
+//     //   position => resolve(position),
+//     //   err => reject(err)
+//     // );
+//     navigator.geolocation.getCurrentPosition(resolve, reject);
+//   });
+// };
 // getPosition().then(pos => console.log(pos));
 
-const whereAmI = function () {
-  getPosition()
-    .then((pos) => {
-      const { latitude: lat, longitude: lng } = pos.coords;
+// const whereAmI = function () {
+//   getPosition()
+//     .then((pos) => {
+//       const { latitude: lat, longitude: lng } = pos.coords;
 
-      return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
-    })
-    .then((res) => {
-      if (!res.ok) throw new Error(`Problem with geocoding ${res.status}`);
-      return res.json();
-    })
-    .then((data) => {
-      console.log(data);
-      console.log(`You are in ${data.city}, ${data.country}`);
+//       return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+//     })
+//     .then((res) => {
+//       if (!res.ok) throw new Error(`Problem with geocoding ${res.status}`);
+//       return res.json();
+//     })
+//     .then((data) => {
+//       console.log(data);
+//       console.log(`You are in ${data.city}, ${data.country}`);
 
-      return fetch(`https://restcountries.eu/rest/v2/name/${data.country}`);
-    })
-    .then((res) => {
-      if (!res.ok) throw new Error(`Country not found (${res.status})`);
+//       return fetch(`https://restcountries.eu/rest/v2/name/${data.country}`);
+//     })
+//     .then((res) => {
+//       if (!res.ok) throw new Error(`Country not found (${res.status})`);
 
-      return res.json();
-    })
-    .then((data) => renderCountry(data[0]))
-    .catch((err) => console.error(`${err.message} 💥`));
-};
+//       return res.json();
+//     })
+//     .then((data) => renderCountry(data[0]))
+//     .catch((err) => console.error(`${err.message} 💥`));
+// };
 
-btn.addEventListener("click", whereAmI);
+// btn.addEventListener("click", whereAmI);
 
-// ---------------challenge 2-------------
+// // ---------------challenge 2-------------
 
-const wait = function (seconds) {
-  return new Promise(function (resolve) {
-    setTimeout(resolve, seconds * 1000);
-  });
-};
+// const wait = function (seconds) {
+//   return new Promise(function (resolve) {
+//     setTimeout(resolve, seconds * 1000);
+//   });
+// };
 
-const imgContainer = document.querySelector(".images");
+// const imgContainer = document.querySelector(".images");
 
-const createImage = function (imgPath) {
-  return new Promise(function (resolve, reject) {
-    const img = document.createElement("img");
-    img.src = imgPath;
+// const createImage = function (imgPath) {
+//   return new Promise(function (resolve, reject) {
+//     const img = document.createElement("img");
+//     img.src = imgPath;
 
-    img.addEventListener("load", function () {
-      imgContainer.append(img);
-      resolve(img);
-    });
+//     img.addEventListener("load", function () {
+//       imgContainer.append(img);
+//       resolve(img);
+//     });
 
-    img.addEventListener("error", function () {
-      reject(new Error("Image not found"));
-    });
-  });
-};
+//     img.addEventListener("error", function () {
+//       reject(new Error("Image not found"));
+//     });
+//   });
+// };
 
-let currentImg;
+// let currentImg;
 
-createImage("/Section11/img-1.jpg")
-  .then((img) => {
-    currentImg = img;
-    console.log("Image 1 loaded");
-    return wait(2);
-  })
-  .then(() => {
-    currentImg.style.display = "none";
-    return createImage("/Section11/img-2.jpg");
-  })
-  .then((img) => {
-    currentImg = img;
-    console.log("Image 2 loaded");
-    return wait(2);
-  })
-  .then(() => {
-    currentImg.style.display = "none";
-  })
-  .catch((err) => console.error(err));
+// createImage("/Section11/img-1.jpg")
+//   .then((img) => {
+//     currentImg = img;
+//     console.log("Image 1 loaded");
+//     return wait(2);
+//   })
+//   .then(() => {
+//     currentImg.style.display = "none";
+//     return createImage("/Section11/img-2.jpg");
+//   })
+//   .then((img) => {
+//     currentImg = img;
+//     console.log("Image 2 loaded");
+//     return wait(2);
+//   })
+//   .then(() => {
+//     currentImg.style.display = "none";
+//   })
+//   .catch((err) => console.error(err));
+
+// const get3Countries = async function (c1, c2, c3) {
+//   try {
+//     const [data1] = await getJson(`https://restcountries.com/v3.1/name/${c1}`);
+//     const [data2] = await getJson(`https://restcountries.com/v3.1/name/${c2}`);
+//     const [data3] = await getJson(`https://restcountries.com/v3.1/name/${c3}`);
+
+//     console.log([data1.capital, data2.capital, data3.capital]);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
+// get3Countries("bharat", "greenland", "china");
+
+const GITHUB_API = "https://api.github.com/users/bhavii1304";
+const user = fetch(GITHUB_API);
+console.log(user);
