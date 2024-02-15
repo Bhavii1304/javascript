@@ -1018,4 +1018,4 @@
 // ShoppingCart2.addToCart("apple", 4);
 // console.log(ShoppingCart2);
 
-import cloneDeep from "./node_modules/lodash-es/cloneDeep.js";
+import cloneDeep from "lodash-es";
