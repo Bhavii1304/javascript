@@ -32,10 +32,10 @@ function playGame(userChoice) {
   const computerChoice = getComputerChoice();
   document.getElementById(
     "comp_choice"
-  ).innerHTML = ` Computer choose <span>${computerChoice.toUpperCase()}</span>`;
+  ).innerHTML = ` Computer chose <span>${computerChoice.toUpperCase()}</span>`;
   document.getElementById(
     "user_choice"
-  ).innerHTML = ` You choose <span>${userChoice.toUpperCase()}</span>`;
+  ).innerHTML = ` You chose <span>${userChoice.toUpperCase()}</span>`;
   gameDetails.style.display = "block";
   if (
     (userChoice === "rock" && computerChoice === "scissor") ||
