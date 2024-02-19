@@ -2,10 +2,10 @@
   "name": "forkify",
   "version": "1.0.0",
   "description": "recipe app",
-  "main": "forkify.html",
+  "default": "Forkify/forkify.html",
   "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "start": "parcel Forkify/forkify.html",
+    "build": "parcel build Forkify/forkify.html"
   },
   "repository": {
     "type": "git",
@@ -18,9 +18,13 @@
   },
   "homepage": "https://github.com/Bhavii1304/javascript#readme",
   "dependencies": {
+    "core-js": "^3.36.0",
+    "fractional": "^1.0.0",
     "leaflet": "^1.9.4",
     "loadash": "^1.0.0",
     "lodash-es": "^4.17.21",
+    "parcel": "^2.11.0",
+    "regenerator-runtime": "^0.14.1",
     "sass": "^1.71.0"
   }
 }
