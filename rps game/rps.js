@@ -100,6 +100,27 @@ const choices = {
   paper: { beats: "rock", losesTo: "scissor" },
   scissor: { beats: "paper", losesTo: "rock" },
 };
+function getRandomChoice() {
+  const keys = Object.keys(choices);
+  return keys[Math.floor(Math.random() * keys.length)];
+}
+
+function displayResult(message, textColor) {
+  resultRef.style.color = textColor;
+  resultRef.textContent = message;
+}
+
+function updateScores() {
+  document.getElementById("computer_score").textContent = computerScore;
+  document.getElementById("user_score").textContent = userScore;
+}
+
+function disableButtons() {
+  const buttons = document.querySelectorAll(".weapons button");
+  buttons.forEach((button) => {
+    button.setAttribute("disabled", "disabled");
+  });
+}
 
 function playGame(userChoice) {
   const computerChoice = getRandomChoice();
@@ -138,28 +159,6 @@ function playGame(userChoice) {
       userScore === 5 ? "You won the game! 🎉" : "Computer won the game! 💥";
     disableButtons();
   }
-}
-
-function getRandomChoice() {
-  const keys = Object.keys(choices);
-  return keys[Math.floor(Math.random() * keys.length)];
-}
-
-function displayResult(message, backgroundColor) {
-  resultRef.style.color = backgroundColor;
-  resultRef.textContent = message;
-}
-
-function updateScores() {
-  document.getElementById("computer_score").textContent = computerScore;
-  document.getElementById("user_score").textContent = userScore;
-}
-
-function disableButtons() {
-  const buttons = document.querySelectorAll(".weapons button");
-  buttons.forEach((button) => {
-    button.setAttribute("disabled", "disabled");
-  });
 }
 
 function resetGame() {
