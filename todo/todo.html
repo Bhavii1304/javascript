@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./todo.css" />
+    <title>ToDo</title>
+  </head>
+  <body>
+    <div class="app-container" id="taskList">
+      <h1 class="app-header">TO DO LIST</h1>
+      <div class="add-task">
+        <input
+          type="text"
+          autocomplete="off"
+          placeholder="Add New Task"
+          class="task-input"
+          id="input"
+          autofocus
+        />
+        <input
+          type="submit"
+          value=""
+          class="submit-task"
+          title="Add Task"
+          id="btn"
+        />
+      </div>
+      <ul class="task-list" id="todo-item">
+        <li class="task-list-item">
+          <label class="task-list-item-label">
+            <input type="checkbox" />
+            <span>task1</span>
+          </label>
+          <div class="d-flex">
+            <span class="btn edit-btn" title="Edit Task"></span>
+            <span class="btn delete-btn" title="Delete Task"></span>
+          </div>
+        </li>
+      </ul>
+      <button id="clearBtn" class="clear-all">
+        <span> Clear All </span>
+      </button>
+    </div>
+
+    <script src="./todo.js"></script>
+  </body>
+</html>

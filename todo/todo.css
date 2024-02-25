@@ -1,0 +1,196 @@
+@import url("https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("https://i.postimg.cc/VNfL5Ynn/pexels-tirachard-kumtanom-584305.jpg");
+  background-size: cover;
+  font-family: "DM Sans", sans-serif;
+  overflow: hidden;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.d-flex {
+  display: flex;
+  gap: 5px;
+}
+
+.app-container {
+  border-radius: 8px;
+  width: 100%;
+  max-width: 480px;
+  max-height: 100%;
+  background: rgb(189 242 209 / 17%);
+  box-shadow: 3px 1px 16px 0px rgb(27 55 31 / 37%);
+  backdrop-filter: blur(5.5px);
+  -webkit-backdrop-filter: blur(5.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 24px;
+  overflow: auto;
+}
+
+.app-header {
+  font-size: 28px;
+  line-height: 32px;
+  margin: 0 0 12px 0;
+  color: #276225;
+}
+
+.submit-task {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border: none;
+  background: #276224;
+  color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-plus'%3E%3Cline x1='12' y1='5' x2='12' y2='19'/%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3C/svg%3E");
+  background-size: 18px;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.add-task {
+  height: 40px;
+  font-size: 14px;
+  display: flex;
+}
+
+.task-input {
+  border-right: none;
+  font-size: 16px;
+  width: 100%;
+  padding: 0 4px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #276224;
+  background-color: transparent;
+  margin-right: 12px;
+  color: #145f2d;
+  box-shadow: none;
+  border-radius: 0;
+
+  &:placeholder {
+    color: #fff;
+  }
+}
+
+.task-list-item {
+  background-color: #37732c2e;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  color: white;
+
+  input {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid #000000;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-check' stroke='%23fff'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 0;
+    transition: 0.2s;
+    margin-right: 8px;
+    flex-shrink: 0;
+    margin-top: 4px;
+    appearance: none;
+
+    &:hover {
+      border-color: black;
+      box-shadow: 0 0 0 3px var(--checkbox-shadow);
+    }
+
+    &:checked {
+      background-size: 10px;
+      border: 1px solid #276224;
+      background-color: #276224;
+
+      + span {
+        color: rgba(0, 0, 0, 0.5);
+        text-decoration: line-through rgba(19, 80, 8, 0.8);
+      }
+    }
+  }
+}
+
+.task-list-item-label {
+  display: flex;
+  align-items: flex-start;
+  color: #0f430c;
+  margin-right: 8px;
+  font-size: 14px;
+  line-height: 24px;
+  position: relative;
+  transition: 0.2s;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.btn {
+  margin-left: auto;
+  display: block;
+  cursor: pointer;
+  border: none;
+}
+
+.delete-btn {
+  width: 22px;
+  height: 22px;
+  background: url("https://cdn.iconscout.com/icon/free/png-256/free-delete-892-1167842.png")
+    no-repeat center;
+  background-size: 20px;
+}
+.edit-btn {
+  width: 22px;
+  height: 22px;
+  background: url("https://i.postimg.cc/Tw4t2xpc/png-transparent-computer-icons-editing-others-removebg-preview.png")
+    no-repeat center;
+  background-size: 28px;
+}
+
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+  input[type="checkbox"],
+  input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+}
+
+.clear-all {
+  color: #276224;
+  padding: 1em;
+  padding-left: 3em;
+  padding-right: 3em;
+  border: 2px dashed #276225;
+  border-radius: 15px;
+  background-color: rgb(195 216 155);
+  box-shadow: 0 0 0 4px #c3d89b, 2px 2px 4px 2px rgb(195 216 154);
+  transition: 0.1s ease-in-out, 0.4s color;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.clear-all:active {
+  transform: translateX(0.1em) translateY(0.1em);
+  box-shadow: 0 0 0 4px #c3d89b, 1.5px 1.5px 2.5px 1.5px rgba(0, 0, 0, 0.5);
+}
