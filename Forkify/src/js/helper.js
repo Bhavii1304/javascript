@@ -8,6 +8,10 @@ const timeout = function (s) {
   });
 };
 
+// export const AJAX = async function(url, uploadData = undefined){
+// const fetchPro = uploadData ?
+// }
+
 export const getJSON = async function (url) {
   try {
     const fetchPro = fetch(url);
