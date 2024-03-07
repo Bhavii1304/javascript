@@ -1018,4 +1018,96 @@
 // ShoppingCart2.addToCart("apple", 4);
 // console.log(ShoppingCart2);
 
-import cloneDeep from "lodash-es";
+// ============slider========
+// const carouselContainer = document.getElementById("carousel-container");
+// const carousel = document.querySelector(".carousel");
+
+// carouselContainer.addEventListener("mousemove", (event) => {
+//   const containerWidth = carouselContainer.clientWidth;
+
+//   const mouseX = event.clientX;
+
+//   const translateValue =
+//     (mouseX / containerWidth) * (carousel.scrollWidth - containerWidth);
+
+//   let percentVal = (translateValue / containerWidth) * 100;
+
+//   carousel.style.transform = `translateX(-${percentVal}%)`;
+// });
+
+// carouselContainer.addEventListener("mouseout", () => {
+//   carousel.style.transform = "translateX(0%)";
+// });
+
+// const carouselContainer = document.getElementById("carousel-container");
+// const carousel = document.querySelector(".carousel");
+// const slides = document.querySelectorAll(".slide");
+
+// let lastMouseX = 0;
+// let isMoving = false;
+
+// carouselContainer.addEventListener("mousemove", (event) => {
+//   const containerWidth = carouselContainer.clientWidth;
+//   const mouseX = event.clientX;
+
+//   if (isMoving) {
+//     const deltaX = mouseX - lastMouseX;
+//     const speed = Math.abs(deltaX);
+//     const direction = deltaX > 0 ? 1 : -1;
+//     const translateValue = (speed / containerWidth) * direction * 100;
+
+//     const maxTranslate = carousel.scrollWidth - containerWidth;
+//     const currentTranslate = -parseFloat(
+//       carousel.style.transform.replace("translateX(", "").replace("%)", "")
+//     );
+//     let newTranslate = currentTranslate + translateValue;
+
+//     if (newTranslate < 0) {
+//       newTranslate = 0;
+//     } else if (newTranslate > maxTranslate) {
+//       newTranslate = maxTranslate;
+//     }
+
+//     carousel.style.transition = "none";
+//     carousel.style.transform = `translateX(-${newTranslate}px)`;
+//   }
+
+//   lastMouseX = mouseX;
+
+//   // Recalculate total width of the carousel content
+//   const totalWidth = Array.from(slides).reduce(
+//     (acc, slide) => acc + slide.offsetWidth,
+//     0
+//   );
+//   carousel.style.width = `${totalWidth}px`;
+// });
+
+// carouselContainer.addEventListener("mouseenter", () => {
+//   isMoving = true;
+// });
+
+// carouselContainer.addEventListener("mouseleave", () => {
+//   isMoving = false;
+//   carousel.style.transition = "transform 0.5s ease-in-out";
+//   carousel.style.transform = "translateX(0px)";
+// });
+
+const carouselContainer = document.getElementById("carousel-container");
+const carousel = document.querySelector(".carousel");
+
+carouselContainer.addEventListener("mousemove", (event) => {
+  const containerWidth = carouselContainer.clientWidth;
+
+  const mouseX = event.clientX;
+
+  const translateValue =
+    (mouseX / containerWidth) * (carousel.scrollWidth - containerWidth);
+
+  let percentVal = (translateValue / containerWidth) * 100;
+
+  carousel.style.transform = `translateX(-${percentVal}%)`;
+});
+
+carouselContainer.addEventListener("mouseout", () => {
+  carousel.style.transform = "translateX(0%)";
+});

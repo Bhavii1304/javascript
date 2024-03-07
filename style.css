@@ -1,4 +1,4 @@
-body {
+/* body {
   height: 100vh;
   display: flex;
   align-items: center;
@@ -10,4 +10,32 @@ body {
   position: absolute;
   top: 2rem;
   right: 2rem;
+} */
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#carousel-container {
+  overflow: hidden;
+  margin: auto;
+  background: pink;
+  width: 100%;
+}
+
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  overflow: hidden;
+  width: 100%;
+}
+
+.slide {
+  background: red;
+  min-width: 300px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  border: 1px solid #ccc;
 }
